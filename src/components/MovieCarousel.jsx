@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-
+import { Component } from 'react';
+import SingleMovie from './SingleMovie';
 
 const keyAPI = 'd9d859c4';
 
@@ -7,7 +7,9 @@ const keyAPI = 'd9d859c4';
 const initialState = {
     movies: [],
     loading: true,
-    error: null
+    error: null,
+    currentIndex: 0,
+    itemsPerPage: 6
 }
 
 class MovieCarousel extends Component {
@@ -16,6 +18,27 @@ class MovieCarousel extends Component {
 
     componentDidMount() {
         this.fetchMovies();
+        this.updateItemsPerPage();
+        window.addEventListener('resize', this.updateItemsPerPage);
+    }
+
+    // metodo per calcolare quanti film mostrare in base alla larghezza schermo
+    updateItemsPerPage = () => {
+        const width = window.innerWidth;
+        let itemsPerPage;
+
+        if (width >= 992) {
+            // lg e xl: 6 film
+            itemsPerPage = 6;
+        } else if (width >= 768) {
+            // md: 4 film
+            itemsPerPage = 4;
+        } else {
+            // sm e xs: 2 film
+            itemsPerPage = 2;
+        }
+
+        this.setState({ itemsPerPage, currentIndex: 0 });
     }
 
     fetchMovies = () => {
@@ -56,6 +79,27 @@ class MovieCarousel extends Component {
             });
     }
 
+    // scorrimento a sinistra
+    previous = () => {
+        this.setState((prevState) => ({
+            currentIndex: Math.max(0, prevState.currentIndex - prevState.itemsPerPage)
+        }));
+    }
+
+    // scorrimento a destra
+    next = () => {
+        const { movies, currentIndex, itemsPerPage } = this.state;
+        this.setState({
+            currentIndex: Math.min(movies.length - itemsPerPage, currentIndex + itemsPerPage)
+        });
+    }
+
+    // metodo per gestire il click sul film 
+    selectMovie = (movie) => {
+        console.log('Film cliccato:', movie);
+        // buttare qui qualcosa se ho tempo 
+    }
+
     render() {
 
         //durante il loading
@@ -82,32 +126,52 @@ class MovieCarousel extends Component {
             );
         }
 
+        const { movies, currentIndex, itemsPerPage } = this.state;
+        const visibleMovies = movies.slice(currentIndex, currentIndex + itemsPerPage);
+        const canGoPrev = currentIndex > 0;
+        const canGoNext = currentIndex + itemsPerPage < movies.length;
+
         // pagina caricata 
         return (
-            <div className="my-4">
+            <div className="my-5 position-relative">
                 <h4 className="mb-3">{this.props.title}</h4>
-                <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-6 g-3">
-                    {this.state.movies.map((movie) => (
-                        <div key={movie.imdbID} className="col">
-                            <img
-                                src={movie.Poster !== "N/A" ? movie.Poster : "https://via.placeholder.com/300x450?text=No+Image"}
-                                alt={movie.Title}
-                                className="img-fluid rounded"
-                                style={{ cursor: 'pointer', width: '100%', height: 'auto' }}
-                                onClick={() => this.selectMovie(movie)}
+
+                <div className="position-relative">
+                    {/* bottone sinistro */}
+                    {canGoPrev && (
+                        <button
+                            className="btn btn-dark position-absolute top-50 start-0 translate-middle-y carousel-control-btn"
+                            onClick={this.previous}
+                            style={{ zIndex: 10, opacity: 0.8 }}
+                        >
+                            <i className="bi bi-chevron-left fs-2"></i>
+                        </button>
+                    )}
+
+                    {/* container dei film */}
+                    <div className="row row-cols-2 row-cols-md-4 row-cols-lg-6 g- px-5 mx-5">
+                        {visibleMovies.map((movie) => (
+                            <SingleMovie
+                                key={movie.imdbID}
+                                movie={movie}
+                                onMovieClick={this.selectMovie}
                             />
-                            <p className="text-light mt-2 small">{movie.Title}</p>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
+
+                    {/* bottone destro*/}
+                    {canGoNext && (
+                        <button
+                            className="btn btn-dark position-absolute top-50 end-0 translate-middle-y carousel-control-btn"
+                            onClick={this.next}
+                            style={{ zIndex: 10, opacity: 0.8 }}
+                        >
+                            <i className="bi bi-chevron-right fs-2"></i>
+                        </button>
+                    )}
                 </div>
             </div>
         );
-    }
-
-    // metodo per gestire il click sul film 
-    selectMovie = (movie) => {
-        console.log('Film cliccato:', movie);
-        // buttare qui qualcosa se ho tempo 
     }
 }
 

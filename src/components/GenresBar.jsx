@@ -1,6 +1,6 @@
 function GenresBar() {
     return (
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-between mt-5">
             <div className="d-flex">
                 <h2 className="mb-4">TV Shows</h2>
                 <div className="btn-group" role="group">

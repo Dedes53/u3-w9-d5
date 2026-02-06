@@ -59,3 +59,44 @@ footer {
 .col img:hover {
   transform: scale(1.1);
 }
+
+/* CAROSELLO */
+.carousel-control-btn {
+  height: 100%;
+  border-radius: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-control-btn:hover {
+  opacity: 1 !important;
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.carousel-control-btn i {
+  color: #f5f5f1;
+}
+
+.movie-card {
+  cursor: pointer;
+  overflow: hidden;
+  aspect-ratio: 1/1.5;
+}
+
+.movie-poster {
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.movie-card:hover .movie-poster {
+  transform: scale(1.05);
+}
+
+.movie-overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.movie-card:hover .movie-overlay {
+  opacity: 1;
+}
