@@ -17,9 +17,9 @@ function App() {
           <div className="container-fluid"> <MovieCarousel title="Fantascienza" searchQuery="Star Wars" /></div>
           <div className="container-fluid"> <MovieCarousel title="Horror" searchQuery="Horror" /></div>
           <div className="container-fluid"> <MovieCarousel title="Commedie" searchQuery="Comedy" /></div>
+          <MyFooter />
         </div>
 
-        <MyFooter />
       </div>
     </>
   )
