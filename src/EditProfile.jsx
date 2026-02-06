@@ -5,7 +5,7 @@ import EditFooter from "./components/EditProfilePage/EditFooter";
 function EditProfile() {
     return (
         <>
-            <div> {/* <- Aggiungi un wrapper */}
+            <div>
                 <EditNav />
 
                 <main className="container">
