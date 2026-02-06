@@ -1,15 +1,15 @@
-import '../App.css'
+
 function MyNav() {
 
     return (
         <nav
             className="navbar navbar-expand-lg bg-dark"
             data-bs-theme="dark"
-            style={{ backgroundColor: "#221f1f !important" }}
+            style={{ backgroundColor: "#221f1f" }}
         >
             <div className="container-fluid">
                 <a className="navbar-brand" href="#"
-                ><img src="assets/logo.png" style={{ width: "100px", height: "55px" }}
+                ><img src="/logo.png" style={{ width: "100px", height: "55px" }}
                     /></a>
                 <button
                     className="navbar-toggler"
