@@ -3,6 +3,7 @@ import MyNav from "./components/MyNav";
 import MyFooter from "./components/MyFooter";
 import Main from "./components/Main";
 import NotFound from "./components/NotFound";
+import TvShows from "./components/TvShows";
 function App() {
   return (
     <>
@@ -12,7 +13,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Main />} />
-
+          <Route path="/tv-shows" element={<TvShows />} />
 
 
           <Route path="*" element={<NotFound />} />
