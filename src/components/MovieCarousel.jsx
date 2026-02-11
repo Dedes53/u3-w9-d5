@@ -134,7 +134,7 @@ class MovieCarousel extends Component {
         // pagina caricata 
         return (
             <div className="my-5 position-relative">
-                <h4 className="mb-3">{this.props.title}</h4>
+                <h4 className="mb-3 text-white">{this.props.title}</h4>
 
                 <div className="position-relative">
                     {/* bottone sinistro */}
