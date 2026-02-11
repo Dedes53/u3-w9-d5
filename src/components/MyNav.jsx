@@ -1,4 +1,4 @@
-
+import { Link, useLocation } from "react-router-dom";
 function MyNav() {
 
     return (
@@ -25,19 +25,34 @@ function MyNav() {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <a className="nav-link active fw-bold" href="#">Home</a>
+                            <Link
+                                to="/"
+                                className={"nav-link" + (useLocation().pathname === "/" ? " active fw-bold" : "")}>
+                                Home</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link fw-bold" href="#">TV Shows</a>
+                            <Link
+                                to="/tv-shows"
+                                className={"nav-link" + (useLocation().pathname === "/tv-shows" ? " active fw-bold" : "")}
+                            >TV Shows</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link fw-bold" href="#">Movies</a>
+                            <Link
+                                to="/movies"
+                                className={"nav-link" + (useLocation().pathname === "/movies" ? " active fw-bold" : "")}
+                            >Movies</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link fw-bold" href="#">Recently Added</a>
+                            <Link
+                                to="/recently-added"
+                                className={"nav-link" + (useLocation().pathname === "/recently-added" ? " active fw-bold" : "")}
+                            >Recently Added</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link fw-bold" href="#">My List</a>
+                            <Link
+                                to="/my-list"
+                                className={"nav-link" + (useLocation().pathname === "/my-list" ? " active fw-bold" : "")}
+                            >My List</Link>
                         </li>
                     </ul>
                     <div className="d-flex align-items-center">

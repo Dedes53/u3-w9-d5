@@ -6,13 +6,10 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 // import './index.css'
 import './Edit.css'
 import App from './App.jsx'
-import EditProfile from './EditProfile.jsx'
-import Settings from './Settings.jsx'
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* <App /> */}
-    {/* <EditProfile /> */}
-    <Settings />
+    <App />
   </StrictMode>,
 )

@@ -1,27 +1,26 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MyNav from "./components/MyNav";
 import MyFooter from "./components/MyFooter";
-import GenresBar from "./components/GenresBar";
-import Carousel from "./components/Carousel";
-import MovieCarousel from "./components/MovieCarousel";
-
+import Main from "./components/Main";
+import NotFound from "./components/NotFound";
 function App() {
   return (
     <>
-      <div>
+      <BrowserRouter>
+
         <MyNav />
 
-        <div className="container-fluid px-4">
-          <GenresBar />
-          {/* <Carousel title="Trending Now" />
-          <Carousel title="Watch It Again" />
-          <Carousel title="New Releases" /> */}
-          <div className="container-fluid"> <MovieCarousel title="Fantascienza" searchQuery="Star Wars" /></div>
-          <div className="container-fluid"> <MovieCarousel title="Horror" searchQuery="Horror" /></div>
-          <div className="container-fluid"> <MovieCarousel title="Commedie" searchQuery="Comedy" /></div>
-          <MyFooter />
-        </div>
+        <Routes>
+          <Route path="/" element={<Main />} />
 
-      </div>
+
+
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+
+        <MyFooter />
+
+      </BrowserRouter>
     </>
   )
 }
